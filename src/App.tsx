@@ -39,29 +39,21 @@ function App() {
   const upcoming = [...events].sort((a, b) => a.date.localeCompare(b.date)).slice(0, 2);
   const filtered = filterByCategory(searchEvents(events, searchText), category);
   const categories = [...new Set(events.map((e) => e.category))];
-  const selectedEvent = selectedId ? findEventById(events, selectedId) : undefined;
+  const selected = selectedId ? findEventById(events, selectedId) : undefined;
+
+  const headerTitle =
+    page === "detail" && selected ? selected.title :
+    page === "events" ? "Tüm Etkinlikler" :
+    page === "add" ? "Etkinlik Ekle" :
+    page === "update" ? "Etkinliği Güncelle" : "Kampüs Etkinlikleri";
+
+  const headerText =
+    page === "home" ? "Fakültedeki seminer, atölye ve söyleşileri tek yerden takip edin." :
+    page === "events" ? "Ekim ayında kampüste düzenlenen etkinlikler." : undefined;
 
   return (
     <>
-      <Header
-        title={
-          page === "detail" && selectedEvent
-            ? selectedEvent.title
-            : page === "events"
-            ? "Tüm Etkinlikler"
-            : page === "add"
-            ? "Etkinlik Ekle"
-            : page === "update"
-            ? "Etkinliği Güncelle"
-            : "Kampüs Etkinlikleri"
-        }
-        text={
-          page === "home"
-            ? "Fakültedeki seminer, atölye ve söyleşileri tek yerden takip edin."
-            : undefined
-        }
-      />
-
+      <Header title={headerTitle} text={headerText} />
       <Navigation current={page} onNavigate={(p) => go(p)} />
 
       <main>
@@ -81,39 +73,17 @@ function App() {
               onSearchChange={setSearchText}
               onCategoryChange={setCategory}
             />
-            <p className="sonuc">
-              {filtered.length === 0 ? "Etkinlik bulunamadı." : `${filtered.length} etkinlik listeleniyor.`}
-            </p>
-            <EventList
-              events={filtered}
-              onShowDetail={(id) => go("detail", id)}
-              emptyText="Aramanıza uygun etkinlik bulunamadı."
-            />
+            <p className="sonuc">{filtered.length} etkinlik listeleniyor.</p>
+            <EventList events={filtered} onShowDetail={(id) => go("detail", id)} emptyText="Aramanıza uygun etkinlik bulunamadı." />
           </div>
         )}
 
-        {page === "detail" && selectedEvent && (
-          <EventDetail
-            event={selectedEvent}
-            onBack={() => go("events")}
-            onEdit={(id) => go("update", id)}
-          />
-        )}
-
-        {page === "detail" && !selectedEvent && (
-          <div>
-            <p>Etkinlik bulunamadı.</p>
-            <button onClick={() => go("events")}>Listeye Dön</button>
-          </div>
+        {page === "detail" && selected && (
+          <EventDetail event={selected} onBack={() => go("events")} onEdit={(id) => go("update", id)} />
         )}
 
         {(page === "add" || page === "update") && (
-          <div>
-            <EventForm
-              categories={categories}
-              onSubmit={() => window.scrollTo(0, 0)}
-            />
-          </div>
+          <EventForm onSubmit={() => window.scrollTo(0, 0)} />
         )}
       </main>
 
