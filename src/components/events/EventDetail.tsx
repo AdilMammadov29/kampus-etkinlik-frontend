@@ -1,38 +1,37 @@
-// src/components/events/EventDetail.tsx
 import type { CampusEvent } from "../../types/campus-event";
-import { formatDate } from "../../utils/format-date";
 
 interface EventDetailProps {
   event: CampusEvent;
-  onBack: () => void;
-  onEdit: (id: string) => void;
 }
 
-function EventDetail({ event, onBack, onEdit }: EventDetailProps) {
+function EventDetail({ event }: EventDetailProps) {
   return (
-    <article className="detay-sayfasi">
-      <h2>{event.title}</h2>
-      <p>
-        <strong>Açıklama:</strong> {event.description}
-      </p>
-      <ul>
-        <li>
-          <strong>Tarih:</strong> {formatDate(event.date)}
-        </li>
-        <li>
-          <strong>Yer:</strong> {event.location}
-        </li>
-        <li>
-          <strong>Kategori:</strong> {event.category}
-        </li>
-        <li>
-          <strong>Kalan Kontenjan:</strong> {event.quota}
-        </li>
-      </ul>
-      <button onClick={onBack}>Listeye Dön</button>
-      <button onClick={() => onEdit(event.id)} style={{ marginLeft: "10px" }}>
-        Bu Etkinliği Güncelle
-      </button>
+    <article className="detay-kapsayici">
+      <div className="detay-grid">
+        <div className="detay-afis">
+          <h2>{event.title}</h2>
+          <p>{event.date} • {event.location}</p>
+        </div>
+
+        <div className="detay-kunye">
+          <h3>Etkinlik Künyesi</h3>
+          <dl>
+            <dt>Tarih</dt>
+            <dd>{event.date}, {event.time}</dd>
+            <dt>Yer</dt>
+            <dd>{event.location}</dd>
+            <dt>Kategori</dt>
+            <dd>{event.category}</dd>
+            <dt>Kontenjan</dt>
+            <dd>{event.capacity} kişi</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div className="detay-aciklama-alani">
+        <h3>Açıklama</h3>
+        <p style={{ color: "#475569", lineHeight: "1.6" }}>{event.description}</p>
+      </div>
     </article>
   );
 }

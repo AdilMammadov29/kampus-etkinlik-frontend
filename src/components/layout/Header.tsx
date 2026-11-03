@@ -1,12 +1,14 @@
-// src/components/layout/Header.tsx
 interface HeaderProps {
-  title: string;
+  title?: string;
   text?: string;
 }
 
-function Header({ title, text }: HeaderProps) {
+function Header({
+  title = "Kampüs Etkinlikleri",
+  text = "Fakültedeki seminer, atölye ve söyleşileri tek yerden takip edin.",
+}: HeaderProps) {
   return (
-    <header className="site-baslik">
+    <header className="ust-alan">
       <h1>{title}</h1>
       {text && <p>{text}</p>}
     </header>

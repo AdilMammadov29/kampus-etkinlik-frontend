@@ -1,21 +1,24 @@
-// src/utils/filter-events.ts
-import type { CampusEvent, Category } from "../types/campus-event";
+import type { CampusEvent, EventCategory } from "../types/campus-event";
 
-export function searchEvents(list: CampusEvent[], text: string): CampusEvent[] {
-  const q = text.trim().toLocaleLowerCase("tr-TR");
-  if (!q) return list;
-  return list.filter(
+export function filterByCategory(
+  events: CampusEvent[],
+  category: EventCategory | "Tümü"
+): CampusEvent[] {
+  if (!category || category === "Tümü") {
+    return events;
+  }
+  return events.filter((e) => e.category === category);
+}
+
+export function searchEvents(events: CampusEvent[], searchText: string): CampusEvent[] {
+  if (!searchText.trim()) {
+    return events;
+  }
+  const query = searchText.toLowerCase();
+  return events.filter(
     (e) =>
-      e.title.toLocaleLowerCase("tr-TR").includes(q) ||
-      e.description.toLocaleLowerCase("tr-TR").includes(q)
+      e.title.toLowerCase().includes(query) ||
+      e.location.toLowerCase().includes(query) ||
+      (e.description && e.description.toLowerCase().includes(query))
   );
-}
-
-export function filterByCategory(list: CampusEvent[], category: Category | ""): CampusEvent[] {
-  if (category === "") return list;
-  return list.filter((e) => e.category === category);
-}
-
-export function findEventById(list: CampusEvent[], id: string): CampusEvent | undefined {
-  return list.find((e) => e.id === id);
 }
