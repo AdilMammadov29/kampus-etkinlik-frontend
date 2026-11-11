@@ -6,7 +6,7 @@
   },
   "item": [
     {
-      "name": "1. GET /health",
+      "name": "1 Health",
       "request": {
         "method": "GET",
         "header": [],
@@ -21,7 +21,7 @@
       "response": []
     },
     {
-      "name": "2. GET /events",
+      "name": "2 Etkinlik listesi",
       "request": {
         "method": "GET",
         "header": [],
@@ -36,7 +36,7 @@
       "response": []
     },
     {
-      "name": "3. GET /events/event-2",
+      "name": "3 Tek etkinlik",
       "request": {
         "method": "GET",
         "header": [],
@@ -51,7 +51,7 @@
       "response": []
     },
     {
-      "name": "4. GET /events/yok",
+      "name": "4 Olmayan etkinlik (404)",
       "request": {
         "method": "GET",
         "header": [],
@@ -66,7 +66,7 @@
       "response": []
     },
     {
-      "name": "5. POST /events (tam body)",
+      "name": "5 Etkinlik oluştur (201)",
       "request": {
         "method": "POST",
         "header": [
@@ -78,7 +78,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"title\": \"Git Atölyesi\",\n  \"category\": \"Atölye\",\n  \"date\": \"2026-12-01\",\n  \"capacity\": 30,\n  \"time\": \"15:00\",\n  \"location\": \"B Blok Lab 2\",\n  \"description\": \"Uygulamalı versiyon kontrol eğitimi.\"\n}",
+          "raw": "{\n  \"title\": \"Git Atölyesi\",\n  \"category\": \"Atölye\",\n  \"capacity\": 30,\n  \"date\": \"2026-12-01\",\n  \"time\": \"14:00\",\n  \"location\": \"Bilgisayar Laboratuvarı 1\",\n  \"description\": \"Git ve GitHub ile ilk adımlar.\"\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -96,7 +96,7 @@
       "response": []
     },
     {
-      "name": "6. POST /events (sadece title)",
+      "name": "6 Eksik veri (400)",
       "request": {
         "method": "POST",
         "header": [
@@ -108,7 +108,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"title\": \"Eksik Etkinlik\"\n}",
+          "raw": "{\n  \"title\": \"Git Atölyesi\"\n}",
           "options": {
             "raw": {
               "language": "json"
