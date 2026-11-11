@@ -1,11 +1,3 @@
-# Kampüs Etkinlikleri - Sprint 06 & Vize Projesi
+﻿# Kampüs Etkinlik Platformu
 
-Fakültedeki seminer, atölye ve söyleşileri tek bir yerden takip etmeyi ve yönetmeyi sağlayan web uygulaması.
-
-## 🚀 Canlı Vercel Adresi
-https://adilmammadov-frontend.vercel.app
-
-## 🛠️ Kurulum
-```bash
-npm install
-npm run dev
+Bu repo `frontend/` ve `backend/` uygulamalarını içerir.

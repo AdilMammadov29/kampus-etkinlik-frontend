@@ -349,3 +349,13 @@ textarea[aria-invalid="true"] {
     font-weight: 700;
   }
 }
+header, .site-baslik {
+  background-color: #43a047 !important;
+  color: #ffffff !important;
+}
+button, .buton, .menu a, input, select, .yonetim-tablo a {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
