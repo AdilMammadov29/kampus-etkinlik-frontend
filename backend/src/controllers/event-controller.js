@@ -34,7 +34,7 @@ export function createEvent(req, res) {
   }
 
   const newEvent = {
-    id: event-${Date.now()},
+    id: `event-${Date.now()}`,
     title,
     category,
     date,
