@@ -23,7 +23,13 @@ app.use((req, res) => {
 app.use((req, res) => {
   res.status(404).json({ error: { message: "Route not found" } });
 });
-
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "ok",
+    time: new Date().toISOString(),
+    student: "ÖĞRENCİ_NUMARANI_BURAYA_YAZ" // Buraya kendi numaranı yaz
+  });
+});
 app.use((err, req, res, next) => {
   console.error(err.message);
   res.status(500).json({ error: { message: "Server error" } });
