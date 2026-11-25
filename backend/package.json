@@ -4,8 +4,8 @@
   "description": "Kampus Etkinlik API",
   "main": "src/server.js",
   "type": "module",
-  "scripts": {
-  "dev": "node --watch src/server.js",
+ "scripts": {
+  "dev": "node --watch-path=src src/server.js",
   "start": "node src/server.js",
   "seed": "node src/seed.js"
 },
